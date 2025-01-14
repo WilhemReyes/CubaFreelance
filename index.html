@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CubaFreelance</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-database.js"></script>
+</head>
+<body>
+    <div id="authContainer">
+        <section id="registro" class="register">
+            <h2>Registro</h2>
+            <form id="registerForm">
+                <input type="text" id="registerName" placeholder="Nombre" required>
+                <input type="text" id="registerLastName" placeholder="Apellidos" required>
+                <input type="email" id="registerEmail" placeholder="Email" required>
+                <input type="tel" id="registerPhone" placeholder="Número de Teléfono (Solo Cuba)" required>
+                <input type="password" id="registerPassword" placeholder="Contraseña" required>
+                <button type="submit">Registrarse</button>
+            </form>
+            <p>¿Ya tienes una cuenta? <a href="#" onclick="showLogin()">Iniciar Sesión</a></p>
+        </section>
+
+        <section id="login" class="login">
+            <h2>Login</h2>
+            <form id="loginForm">
+                <input type="email" id="loginEmail" placeholder="Email" required>
+                <input type="password" id="loginPassword" placeholder="Contraseña" required>
+                <button type="submit">Iniciar Sesión</button>
+            </form>
+        </section>
+    </div>
+
+    <div id="mainContainer" style="display: none;">
+        <header>
+            <div class="container">
+                <div class="logo">CubaFreelance</div>
+                <nav>
+                    <div class="menu-icon" onclick="toggleMenu()">&#9776;</div>
+                    <ul id="menu">
+                        <li><a href="#inicio">Inicio</a></li>
+                        <li><a href="#sobre-nosotros">Sobre Nosotros</a></li>
+                        <li><a href="#trabajos">Trabajos</a></li>
+                        <li><a href="#freelancers">Freelancers</a></li>
+                        <li><a href="#contacto">Contacto</a></li>
+                    </ul>
+                </nav>
+                <div class="profile-icon" onclick="openProfileEditor()">
+                    <img id="profileIconImage" src="default-icon.png" alt="Perfil" style="width: 30px; height: 30px; border-radius: 50%;">
+                </div>
+                <div class="search-container">
+                    <input type="text" id="searchInput" placeholder="Buscar servicios o usuarios...">
+                    <ul id="suggestionsList" class="suggestions-list"></ul>
+                </div>
+            </div>
+        </header>
+
+        <section id="inicio" class="hero">
+            <h1>Bienvenido a CubaFreelance</h1>
+            <p>La mejor plataforma para encontrar y ofrecer trabajos freelance en Cuba.</p>
+            <button>Explorar Trabajos</button>
+        </section>
+
+        <section id="sobre-nosotros" class="about">
+            <h2>Sobre Nosotros</h2>
+            <p>Somos una plataforma que conecta a freelancers con empleadores...</p>
+        </section>
+
+        <section id="trabajos" class="jobs">
+            <h2>Trabajos</h2>
+            <p>Aquí puedes encontrar trabajos...</p>
+        </section>
+
+        <section id="freelancers" class="freelancers">
+            <h2>Freelancers</h2>
+            <p>Únete a nuestra comunidad de freelancers...</p>
+        </section>
+
+        <section id="contacto" class="contact">
+            <h2>Contacto</h2>
+            <p>Ponte en contacto con nosotros...</p>
+        </section>
+
+        <section id="perfil" class="profile" style="display: none;">
+            <h2>Editar Perfil</h2>
+            <form id="profileForm">
+                <input type="file" id="profileImage" accept="image/*">
+                <img id="profileImageDisplay" style="display: none; width: 100px; height: 100px; border-radius: 50%; margin-bottom: 10px;">
+                <input type="text" id="profileName" placeholder="Nombre de Usuario" maxlength="50" required>
+                <textarea id="profilePresentation" placeholder="Presentación como Vendedor (70 caracteres máx)" maxlength="70" required></textarea>
+                <textarea id="profileDescription" placeholder="Descripción (500 caracteres máx)" maxlength="500" required></textarea>
+                <select id="profileCategory" required>
+                    <option value="" disabled selected>Selecciona tu categoría</option>
+                    <option value="Desarrollo Web">Desarrollo Web</option>
+                    <option value="Diseño Gráfico">Diseño Gráfico</option>
+                    <option value="Marketing Digital">Marketing Digital</option>
+                    <option value="Redacción de Contenidos">Redacción de Contenidos</option>
+                    <option value="Traducción">Traducción</option>
+                    <option value="Producción Musical">Producción Musical</option>
+                    <option value="Fotografía y Video">Fotografía y Video</option>
+                    <!-- Puedes añadir más categorías aquí -->
+                </select>
+                <input type="url" id="profileLink1" placeholder="Enlace de Trabajo 1" required>
+                <input type="url" id="profileLink2" placeholder="Enlace de Trabajo 2" required>
+                <input type="url" id="profileLink3" placeholder="Enlace de Trabajo 3" required>
+                <button type="submit">Guardar Cambios</button>
+            </form>
+        </section>
+
+        <section id="chat" class="chat" style="display: none;">
+            <h2>Chat</h2>
+            <div id="chatMessages" class="chat-messages"></div>
+            <form id="chatForm">
+                <input type="text" id="chatInput" placeholder="Escribe un mensaje" required>
+                <button type="submit">Enviar</button>
+            </form>
+        </section>
+
+        <footer>
+            <div class="container">
+                <p>© 2025 CubaFreelance. Todos los derechos reservados.</p>
+                <div class="contact">
+                    <a href="wr9records@gmail.com">Email</a>
+                    <a href="tel:+5358894863">Teléfono</a>
+                    <a href="https://twitter.com/tu_perfil" target="_blank">Twitter</a>
+                    <a href="https://facebook.com/tu_perfil" target="_blank">Facebook</a>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <div id="welcomeMessageContainer" style="display: none;">
+        <h2 id="welcomeMessage"></h2>
+    </div>
+
+    <script src="scripts.js"></script>
+</body>
+</html>

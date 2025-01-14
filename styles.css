@@ -1,0 +1,426 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+/* General Styles */
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    line-height: 1.6;
+    background-color: #f0f0f0;
+    color: #333;
+}
+
+.container {
+    width: 90%;
+    margin: 0 auto;
+    max-width: 1200px;
+}
+
+header {
+    background-color: #333;
+    color: white;
+    padding: 15px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header .logo {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: space-around;
+    padding: 0;
+    margin: 0;
+}
+
+nav ul li {
+    margin: 0 10px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+nav ul li a:hover {
+    color: #ffcc00;
+}
+
+.menu-icon {
+    display: none;
+    font-size: 30px;
+    cursor: pointer;
+}
+
+.search-container {
+    position: relative;
+    margin-left: 20px;
+}
+
+#searchInput {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 250px;
+}
+
+.suggestions-list {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    max-height: 200px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow-y: auto;
+    display: none;
+    z-index: 1000;
+}
+
+.suggestions-list li {
+    padding: 10px;
+    cursor: pointer;
+}
+
+.suggestions-list li:hover {
+    background-color: #f0f0f0;
+}
+
+.hero {
+    background-color: #007bff;
+    color: white;
+    padding: 100px 0;
+    text-align: center;
+    animation: fadeIn 2s ease-in;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.hero h1 {
+    font-size: 48px;
+    margin-bottom: 20px;
+    animation: slideInFromLeft 1s ease-out;
+}
+
+@keyframes slideInFromLeft {
+    from {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.hero p {
+    font-size: 20px;
+    margin-bottom: 20px;
+    animation: slideInFromRight 1s ease-out;
+}
+
+@keyframes slideInFromRight {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.hero button {
+    padding: 10px 20px;
+    background-color: #0056b3;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(-20px);
+    }
+    60% {
+        transform: translateY(-10px);
+    }
+}
+
+.hero button:hover {
+    background-color: #003366;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 15px 0;
+}
+
+footer .contact a {
+    color: white;
+    margin: 0 10px;
+    text-decoration: none;
+}
+
+/* Estilos para las secciones de registro y login */
+.register, .login {
+    padding: 50px 0;
+    text-align: center;
+}
+
+.register h2, .login h2 {
+    font-size: 36px;
+    margin-bottom: 20px;
+}
+
+.register form, .login form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.register input, .login input {
+    padding: 10px;
+    margin: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 300px;
+    max-width: 90%;
+}
+
+.register button, .login button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.register button:hover, .login button:hover {
+    background-color: #0056b3;
+}
+
+.register p {
+    margin-top: 20px;
+}
+
+.register a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.register a:hover {
+    text-decoration: underline;
+}
+
+/* Estilos para el mensaje de bienvenida */
+#welcomeMessageContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    text-align: center;
+}
+
+#welcomeMessage {
+    font-size: 36px;
+    color: #333;
+}
+
+/* Estilos para la sección de bienvenida */
+.welcome {
+    padding: 50px 0;
+    text-align: center;
+}
+
+.welcome h2 {
+    font-size: 36px;
+    margin-bottom: 20px;
+}
+
+/* Estilos para la sección del perfil de usuario */
+.profile {
+    padding: 50px 0;
+    text-align: center;
+}
+
+.profile h2 {
+    font-size: 36px;
+    margin-bottom: 20px;
+}
+
+.profile form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.profile input, .profile textarea, .profile select {
+    padding: 10px;
+    margin: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 300px;
+    max-width: 90%;
+}
+
+.profile button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.profile button:hover {
+    background-color: #0056b3;
+}
+
+/* Estilo del ícono de perfil */
+.profile-icon {
+    font-size: 24px;
+    cursor: pointer;
+}
+
+#profileIconImage {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+}
+
+/* Estilo de la imagen del perfil en el formulario */
+#profileImageDisplay {
+    display: none;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+}
+
+/* Estilos para la sección de chat */
+.chat {
+    padding: 50px 0;
+    text-align: center;
+}
+
+.chat h2 {
+    font-size: 36px;
+    margin-bottom: 20px;
+}
+
+.chat-messages {
+    width: 80%;
+    max-width: 600px;
+    height: 300px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin: 0 auto 20px;
+    padding: 10px;
+    overflow-y: scroll;
+}
+
+.chat form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.chat input {
+    padding: 10px;
+    margin-right: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 300px;
+    max-width: 70%;
+}
+
+.chat button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.chat button:hover {
+    background-color: #0056b3;
+}
+
+@media (max-width: 768px) {
+    .menu-icon {
+        display: block;
+    }
+
+    nav ul {
+        display: none;
+        flex-direction: column;
+        text-align: center;
+        background-color: #333;
+        position: absolute;
+        top: 50px;
+        left: 0;
+        width: 100%;
+        padding: 10px 0;
+    }
+
+    nav ul li {
+        margin: 10px 0;
+    }
+
+    nav ul.show {
+        display: flex;
+    }
+}
+
+/* Estilos específicos para dispositivos móviles */
+@media (max-width: 576px) {
+    #searchInput {
+        width: 100%;
+    }
+
+    .chat-messages {
+        width: 100%;
+        height: 200px;
+    }
+
+    .chat input {
+        width: 100%;
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+
+    .chat button {
+        width: 100%;
+    }
+}
